@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyAppVangAPI", "ProyAppVa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyAppVangAPI.Core", "ProyAppVangAPI.Core\ProyAppVangAPI.Core.csproj", "{AB42A3F8-0ED9-47F6-8913-7E763AD3801F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyAppVangAPI.Infrastructure", "ProyAppVangAPI.Infrastructure\ProyAppVangAPI.Infrastructure.csproj", "{DB26AF65-0725-4FF2-BD90-5C361BBE54FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyAppVangAPI.Infrastructure", "ProyAppVangAPI.Infrastructure\ProyAppVangAPI.Infrastructure.csproj", "{DB26AF65-0725-4FF2-BD90-5C361BBE54FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyAppVangAPI.Tests", "ProyAppVangAPI.Tests\ProyAppVangAPI.Tests.csproj", "{95AE9F03-0C21-42D9-A7C8-264D6FAA1018}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB42A3F8-0ED9-47F6-8913-7E763AD3801F} = {AB42A3F8-0ED9-47F6-8913-7E763AD3801F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{DB26AF65-0725-4FF2-BD90-5C361BBE54FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB26AF65-0725-4FF2-BD90-5C361BBE54FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB26AF65-0725-4FF2-BD90-5C361BBE54FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95AE9F03-0C21-42D9-A7C8-264D6FAA1018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95AE9F03-0C21-42D9-A7C8-264D6FAA1018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95AE9F03-0C21-42D9-A7C8-264D6FAA1018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95AE9F03-0C21-42D9-A7C8-264D6FAA1018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
