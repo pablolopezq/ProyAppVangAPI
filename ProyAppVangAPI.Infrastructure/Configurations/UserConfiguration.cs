@@ -7,15 +7,17 @@ using System.Text;
 
 namespace ProyAppVangAPI.Infrastructure.Configurations
 {
-    public class ListConfiguration : IEntityTypeConfiguration<Lista>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Lista> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Username).IsRequired();
+
+            builder.Property(x => x.Password).IsRequired();
         }
     }
 }

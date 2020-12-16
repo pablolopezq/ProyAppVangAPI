@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProyAppVangAPI.Core.Entities;
-using shoponline.Infrastructure.Configurations;
+using ProyAppVangAPI.Infrastructure.Configurations;
 
 namespace ProyAppVangAPI.Infrastructure
 {
@@ -10,9 +10,12 @@ namespace ProyAppVangAPI.Infrastructure
 
         public DbSet<Lista> Lists;
 
+        public DbSet<User> Users;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ListConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }
