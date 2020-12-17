@@ -6,6 +6,8 @@ using ProyAppVangAPI.Infrastructure.Repositories;
 using ProyAppVangAPI.Infrastructure;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using ProyAppVangAPI.Tests.Builders;
+using ProyAppVangAPI.Core;
 
 namespace ProyAppVangAPI.Tests
 {
@@ -21,12 +23,16 @@ namespace ProyAppVangAPI.Tests
         [Fact]
         public void CreateTest()
         {
-            DbContextOptions options;
-            ProyAppVangAPIDbContext context = new ProyAppVangAPIDbContext(options);
-            IRepository<Lista> repository = new EntityFrameworkRepository<Lista>(context);
-            IListService service = new ListService(repository);
-
-            var result = service.Create(mockList);
+            var builder = new ListControllerTestBuilder();
+            var service = builder.GetService();
+            service.Setup(s => s.Create(mockList))
+                .Returns(ServiceResult<Lista>.SuccessResult(new Lista
+                {
+                    Id = 1,
+                    Name = "Lista1",
+                    Items = new List<string>()
+                }));
+            var result = service.Object.Create(mockList);
 
             Assert.Equal(result.Result, mockList);
         }
@@ -34,13 +40,18 @@ namespace ProyAppVangAPI.Tests
         [Fact]
         public void AddItemTest()
         {
-            DbContextOptions options;
-            ProyAppVangAPIDbContext context = new ProyAppVangAPIDbContext(options);
-            IRepository<Lista> repository = new EntityFrameworkRepository<Lista>(context);
-            IListService service = new ListService(repository);
+            var builder = new ListControllerTestBuilder();
+            var service = builder.GetService();
+            service.Setup(s => s.Create(mockList))
+                .Returns(ServiceResult<Lista>.SuccessResult(new Lista
+                {
+                    Id = 1,
+                    Name = "Lista1",
+                    Items = new List<string>()
+                }));
 
-            service.Create(mockList);
-            var result = service.AddItem("flour", 1);
+            service.Object.Create(mockList);
+            var result = service.Object.AddItem("flour", 1);
 
             var l = new List<string>();
             l.Add("flour");
@@ -57,13 +68,18 @@ namespace ProyAppVangAPI.Tests
         [Fact]
         public void DeleteItemTest()
         {
-            DbContextOptions options;
-            ProyAppVangAPIDbContext context = new ProyAppVangAPIDbContext(options);
-            IRepository<Lista> repository = new EntityFrameworkRepository<Lista>(context);
-            IListService service = new ListService(repository);
+            var builder = new ListControllerTestBuilder();
+            var service = builder.GetService();
+            service.Setup(s => s.Create(mockList))
+                .Returns(ServiceResult<Lista>.SuccessResult(new Lista
+                {
+                    Id = 1,
+                    Name = "Lista1",
+                    Items = new List<string>()
+                }));
 
-            service.Create(mockList);
-            var result = service.AddItem("flour", 1);
+            service.Object.Create(mockList);
+            var result = service.Object.AddItem("flour", 1);
 
             var l = new List<string>();
             l.Add("flour");
@@ -76,20 +92,25 @@ namespace ProyAppVangAPI.Tests
 
             Assert.Equal(result.Result, comp);
 
-            result = service.RemoveItem("flour", 1);
+            result = service.Object.RemoveItem("flour", 1);
             Assert.Equal(result.Result, mockList);
         }
 
         [Fact]
         public void ClearListTest()
         {
-            DbContextOptions options;
-            ProyAppVangAPIDbContext context = new ProyAppVangAPIDbContext(options);
-            IRepository<Lista> repository = new EntityFrameworkRepository<Lista>(context);
-            IListService service = new ListService(repository);
+            var builder = new ListControllerTestBuilder();
+            var service = builder.GetService();
+            service.Setup(s => s.Create(mockList))
+                .Returns(ServiceResult<Lista>.SuccessResult(new Lista
+                {
+                    Id = 1,
+                    Name = "Lista1",
+                    Items = new List<string>()
+                }));
 
-            service.Create(mockList);
-            var result = service.AddItem("flour", 1);
+            service.Object.Create(mockList);
+            var result = service.Object.AddItem("flour", 1);
 
             var l = new List<string>();
             l.Add("flour");
@@ -102,7 +123,7 @@ namespace ProyAppVangAPI.Tests
 
             Assert.Equal(result.Result, comp);
 
-            result = service.CleanList(1);
+            result = service.Object.CleanList(1);
             Assert.Equal(result.Result, mockList);
         }
     }
